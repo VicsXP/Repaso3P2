@@ -1,8 +1,10 @@
 using Repaso3P2.Components;
+using Repaso3P2.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddSingleton<AveService>();
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
