@@ -1,0 +1,115 @@
+﻿@page "/aves"
+
+@using Repaso3P2.Models
+@using Repaso3P2.Services
+
+@inject AveService aveService
+
+<h1 class="mb-4">
+    Registro de Aves
+</h1>
+
+<div class="dashboard-card">
+
+    <div class="mb-3">
+
+        <label class="form-label">
+            Nombre Propio
+        </label>
+
+        <input class="form-control"
+               @bind="nuevaAve.NombrePropio" />
+
+    </div>
+
+    <div class="mb-3">
+
+        <label class="form-label">
+            Especie
+        </label>
+
+        <input class="form-control"
+               @bind="nuevaAve.Especie" />
+
+    </div>
+
+    <div class="mb-3">
+
+        <label class="form-label">
+            Tipo de Alimentación
+        </label>
+
+        <input class="form-control"
+               @bind="nuevaAve.TipoAlimentacion" />
+
+    </div>
+
+    <div class="mb-3">
+
+        <label class="form-label">
+            Tiempo Máximo de Vida
+        </label>
+
+        <input type="number"
+               class="form-control"
+               @bind="nuevaAve.TiempoMaximoVida" />
+
+    </div>
+
+    <div class="mb-3 form-check">
+
+        <input type="checkbox"
+               class="form-check-input"
+               @bind="nuevaAve.Vuela" />
+
+        <label class="form-check-label">
+            ¿Vuela?
+        </label>
+
+    </div>
+
+    <div class="mb-4">
+
+        <label class="form-label">
+            Período de Incubación (días)
+        </label>
+
+        <input type="number"
+               class="form-control"
+               @bind="nuevaAve.PeriodoIncubacion" />
+
+    </div>
+
+    <button class="btn btn-primary"
+            @onclick="GuardarAve">
+
+        Guardar Ave
+
+    </button>
+
+</div>
+
+@if (mensaje != "")
+{
+    <div class="alert alert-success mt-4">
+
+        @mensaje
+
+    </div>
+}
+
+@code {
+
+    private Ave nuevaAve = new();
+
+    private string mensaje = "";
+
+    private void GuardarAve()
+    {
+        aveService.GuardarAve(nuevaAve);
+
+        mensaje = "Ave registrada correctamente";
+
+        nuevaAve = new Ave();
+    }
+}

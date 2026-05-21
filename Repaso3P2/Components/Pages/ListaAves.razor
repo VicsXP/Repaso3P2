@@ -1,0 +1,79 @@
+﻿@page "/lista-aves"
+
+@using Repaso3P2.Models
+@using Repaso3P2.Services
+
+@inject AveService aveService
+
+<h1 class="mb-4">
+    Zoológico - Lista de Aves
+</h1>
+
+<div class="dashboard-card">
+
+    @if (aves.Count == 0)
+    {
+        <div class="alert alert-warning">
+
+            No hay aves registradas.
+
+        </div>
+    }
+    else
+    {
+        <table class="table table-hover align-middle">
+
+            <thead>
+
+                <tr>
+
+                    <th>Nombre</th>
+                    <th>Especie</th>
+                    <th>Alimentación</th>
+                    <th>Vida Máxima</th>
+                    <th>Vuela</th>
+                    <th>Incubación</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                @foreach (var ave in aves)
+                {
+                    <tr>
+
+                        <td>@ave.NombrePropio</td>
+
+                        <td>@ave.Especie</td>
+
+                        <td>@ave.TipoAlimentacion</td>
+
+                        <td>@ave.TiempoMaximoVida años</td>
+
+                        <td>
+                            @(ave.Vuela ? "Sí" : "No")
+                        </td>
+
+                        <td>@ave.PeriodoIncubacion días</td>
+
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+    }
+
+</div>
+
+@code {
+
+    private List<Ave> aves = new();
+
+    protected override void OnInitialized()
+    {
+        aves = aveService.ObtenerAves();
+    }
+}

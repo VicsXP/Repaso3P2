@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "Vuela": true,
+    "PeriodoIncubacion": 14,
+    "NombrePropio": "Piolin",
+    "Especie": "Canario",
+    "TipoAlimentacion": "Semillas",
+    "TiempoMaximoVida": 12
+  }
+]
